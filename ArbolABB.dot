@@ -1,0 +1,28 @@
+digraph grafica{
+ rankdir=TB;
+node [
+shape =record, fillcolor=seashell2, style =filled, ];
+"nodo1"
+[ label="<C0>| F|<C1>"];
+"nodo3"
+[ label="<C0>| B|<C1>"];
+"nodo5"
+[ label=" A"];
+nodo3:C0->nodo5
+"nodo4"
+[ label="<C0>| C|<C1>"];
+"nodo9"
+[ label=" D"];
+nodo4:C1->nodo9
+nodo3:C1->nodo4
+nodo1:C0->nodo3
+"nodo2"
+[ label="<C0>| M|<C1>"];
+"nodo6"
+[ label=" H"];
+nodo2:C0->nodo6
+"nodo8"
+[ label=" N"];
+nodo2:C1->nodo8
+nodo1:C1->nodo2
+}
