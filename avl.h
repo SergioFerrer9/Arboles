@@ -20,8 +20,8 @@ struct AVL{
     void Mostrar_InOrden();
     void Mostrar_InOrden(NodoAVL *actual);
     NodoAVL *Buscar(char *nombre, NodoAVL *actual);
-    void Graficar_ABB();
-    void Graficar_ABB(NodoAVL *actual);
+    void Graficar_AVL();
+    void Graficar_AVL(NodoAVL *actual);
     int Factor_Equilibrio(NodoAVL *actual);
     NodoAVL *Izquierda(NodoAVL *actual);
     NodoAVL *Derecha(NodoAVL *actual);

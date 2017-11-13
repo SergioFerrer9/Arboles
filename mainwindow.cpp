@@ -31,6 +31,8 @@ void MainWindow::on_pushButton_clicked()
     abb->Insertar("H",32);
     abb->Insertar("N",2);
     abb->Insertar("D",8);
+    abb->Insertar("I",8);
+    abb->Insertar("E",8);
     abb->Mostrar_InOrden();
     abb->Graficar_ABB();
     QPixmap pixabb("/home/debian9/Escritorio/Arboles/ArbolABB.png");
@@ -38,16 +40,22 @@ void MainWindow::on_pushButton_clicked()
 
 
     AVL *avl = new AVL();
-    avl->Insertar("F",1);
-    avl->Insertar("M",2);
-    avl->Insertar("B",33);
-    avl->Insertar("C",3);
-    avl->Insertar("A",44);
-    avl->Insertar("H",5);
-    avl->Insertar("H",32);
-    avl->Insertar("N",2);
-    avl->Insertar("D",8);
+    avl->Insertar("F",2);
+    avl->Insertar("M",3);
+    avl->Insertar("B",5);
+    avl->Insertar("C",6);
+    avl->Insertar("A",7);
+    avl->Insertar("H",8);
+    avl->Insertar("H",8);
+    avl->Insertar("N",9);
+    avl->Insertar("Z",10);
+    avl->Insertar("D",11);
+
+
     avl->Mostrar_InOrden();
+    avl->Graficar_AVL();
+    QPixmap pixavl("/home/debian9/Escritorio/Arboles/ArbolAVL.png");
+    ui->label_2->setPixmap(pixavl);
 
 
 

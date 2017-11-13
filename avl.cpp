@@ -149,6 +149,80 @@
         }
     }
 
+    ///************GRAFICAR ARBOL AVL*****************************
+    void AVL::Graficar_AVL(){
+        gra=fopen("ArbolAVL.dot","wt");
+        fputs("digraph grafica{\n ",gra);
+        fputs("rankdir=TB;\n",gra);
+        fputs("node [\n" ,gra);
+        fputs("shape =record, ",gra);
+        fputs("fillcolor=seashell2, ",gra);
+        fputs("style =filled, ",gra);
+        fputs("];\n",gra);
+
+        cout << endl;
+        cout << "*****Graficar Arbol AVL*****" << endl;
+
+         Graficar_AVL(raiz);
+
+        fputs("}",gra);
+        fclose(gra);
+        system("dot -Tpng ArbolAVL.dot -o ArbolAVL.png");
+        cout << "*****Fin Graficar InOrden*****" << endl;
+    }
+
+    void AVL::Graficar_AVL(NodoAVL *actual){
+        if(actual != NULL)
+        {
+
+            if(actual->izq ==NULL && actual->der==NULL){
+                fputs("\"",gra);
+                fputs("nodo",gra);
+                fprintf(gra,"%d",actual->contador);
+                fputs("\"",gra);
+                fputs("\n[ ",gra);
+                fprintf(gra, "label=\" " );
+                fprintf(gra, "%s",actual->Nombre);
+                fputs(",",gra);
+                fprintf(gra, "%d",actual->Edad);
+                fputs("\"];\n",gra);
+
+            }else{
+                fputs("\"",gra);
+                fputs("nodo",gra);
+                fprintf(gra,"%d",actual->contador);
+                fputs("\"",gra);
+                fputs("\n[ ",gra);
+                fprintf(gra, "label=\"<C0>| " );
+                fprintf(gra, "%s",actual->Nombre);
+                fputs(",",gra);
+                fprintf(gra, "%d",actual->Edad);
+                fputs("|<C1>\"];\n",gra);
+
+            }
+            if(actual->izq!=NULL){
+                Graficar_AVL(actual->izq);
+                fputs("nodo",gra);
+                fprintf(gra,"%d",actual->contador);
+                fputs(":C0->nodo",gra);
+                fprintf(gra,"%d",actual->izq->contador);
+                fputs("\n",gra);
+
+            }
+            if(actual->der!=NULL){
+                Graficar_AVL(actual->der);
+                fputs("nodo",gra);
+                fprintf(gra,"%d",actual->contador);
+                fputs(":C1->nodo",gra);
+                fprintf(gra,"%d",actual->der->contador);
+                fputs("\n",gra);
+            }
+
+
+        }
+    }
+
+
 
 
 
