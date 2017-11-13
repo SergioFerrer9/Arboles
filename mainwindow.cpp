@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <abb.h>
+#include <avl.h>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -34,5 +35,21 @@ void MainWindow::on_pushButton_clicked()
     abb->Graficar_ABB();
     QPixmap pixabb("/home/debian9/Escritorio/Arboles/ArbolABB.png");
     ui->label->setPixmap(pixabb);
+
+
+    AVL *avl = new AVL();
+    avl->Insertar("F",1);
+    avl->Insertar("M",2);
+    avl->Insertar("B",33);
+    avl->Insertar("C",3);
+    avl->Insertar("A",44);
+    avl->Insertar("H",5);
+    avl->Insertar("H",32);
+    avl->Insertar("N",2);
+    avl->Insertar("D",8);
+    avl->Mostrar_InOrden();
+
+
+
 
 }

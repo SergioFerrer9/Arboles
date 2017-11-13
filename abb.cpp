@@ -125,6 +125,8 @@ void ABB::Graficar_ABB(NodoABB *actual){
             fputs("\n[ ",gra);
             fprintf(gra, "label=\" " );
             fprintf(gra, "%s",actual->Nombre);
+            fputs(",",gra);
+            fprintf(gra, "%d",actual->Edad);
             fputs("\"];\n",gra);
 
         }else{
@@ -135,6 +137,8 @@ void ABB::Graficar_ABB(NodoABB *actual){
             fputs("\n[ ",gra);
             fprintf(gra, "label=\"<C0>| " );
             fprintf(gra, "%s",actual->Nombre);
+            fputs(",",gra);
+            fprintf(gra, "%d",actual->Edad);
             fputs("|<C1>\"];\n",gra);
 
         }

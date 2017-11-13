@@ -52,10 +52,12 @@ OBJECTS_DIR   = ./
 
 SOURCES       = main.cpp \
 		mainwindow.cpp \
-		abb.cpp moc_mainwindow.cpp
+		abb.cpp \
+		avl.cpp moc_mainwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		abb.o \
+		avl.o \
 		moc_mainwindow.o
 DIST          = ../../Qt/5.10.0/gcc_64/mkspecs/features/spec_pre.prf \
 		../../Qt/5.10.0/gcc_64/mkspecs/common/unix.conf \
@@ -240,9 +242,11 @@ DIST          = ../../Qt/5.10.0/gcc_64/mkspecs/features/spec_pre.prf \
 		../../Qt/5.10.0/gcc_64/mkspecs/features/yacc.prf \
 		../../Qt/5.10.0/gcc_64/mkspecs/features/lex.prf \
 		Arboles.pro mainwindow.h \
-		abb.h main.cpp \
+		abb.h \
+		avl.h main.cpp \
 		mainwindow.cpp \
-		abb.cpp
+		abb.cpp \
+		avl.cpp
 QMAKE_TARGET  = Arboles
 DESTDIR       = 
 TARGET        = Arboles
@@ -642,8 +646,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../Qt/5.10.0/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents mainwindow.h abb.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp mainwindow.cpp abb.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents mainwindow.h abb.h avl.h $(DISTDIR)/
+	$(COPY_FILE) --parents main.cpp mainwindow.cpp abb.cpp avl.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents mainwindow.ui $(DISTDIR)/
 
 
@@ -1048,6 +1052,11 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../Qt/5.10.0/gcc_64/include/QtGui/qinputmethod.h \
 		../../Qt/5.10.0/gcc_64/include/QtWidgets/QButtonGroup \
 		../../Qt/5.10.0/gcc_64/include/QtWidgets/qbuttongroup.h \
+		../../Qt/5.10.0/gcc_64/include/QtWidgets/QGridLayout \
+		../../Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
 		../../Qt/5.10.0/gcc_64/include/QtWidgets/QHeaderView \
 		../../Qt/5.10.0/gcc_64/include/QtWidgets/qheaderview.h \
 		../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemview.h \
@@ -1065,18 +1074,30 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../Qt/5.10.0/gcc_64/include/QtWidgets/qstyle.h \
 		../../Qt/5.10.0/gcc_64/include/QtWidgets/qtabbar.h \
 		../../Qt/5.10.0/gcc_64/include/QtWidgets/qrubberband.h \
+		../../Qt/5.10.0/gcc_64/include/QtWidgets/QLabel \
+		../../Qt/5.10.0/gcc_64/include/QtWidgets/qlabel.h \
 		../../Qt/5.10.0/gcc_64/include/QtWidgets/QMenuBar \
 		../../Qt/5.10.0/gcc_64/include/QtWidgets/qmenubar.h \
 		../../Qt/5.10.0/gcc_64/include/QtWidgets/qmenu.h \
+		../../Qt/5.10.0/gcc_64/include/QtWidgets/QPushButton \
+		../../Qt/5.10.0/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../Qt/5.10.0/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../Qt/5.10.0/gcc_64/include/QtWidgets/QScrollArea \
+		../../Qt/5.10.0/gcc_64/include/QtWidgets/qscrollarea.h \
 		../../Qt/5.10.0/gcc_64/include/QtWidgets/QStatusBar \
 		../../Qt/5.10.0/gcc_64/include/QtWidgets/qstatusbar.h \
+		../../Qt/5.10.0/gcc_64/include/QtWidgets/QTabWidget \
 		../../Qt/5.10.0/gcc_64/include/QtWidgets/QToolBar \
 		../../Qt/5.10.0/gcc_64/include/QtWidgets/qtoolbar.h \
-		../../Qt/5.10.0/gcc_64/include/QtWidgets/QWidget
+		../../Qt/5.10.0/gcc_64/include/QtWidgets/QWidget \
+		abb.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
 
 abb.o: abb.cpp abb.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o abb.o abb.cpp
+
+avl.o: avl.cpp avl.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o avl.o avl.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
