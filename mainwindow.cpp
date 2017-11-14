@@ -33,6 +33,7 @@ void MainWindow::on_pushButton_clicked()
     abb->Insertar("D",8);
     abb->Insertar("I",8);
     abb->Insertar("E",8);
+    abb->Eliminar_ABB("A");
     abb->Mostrar_InOrden();
     abb->Graficar_ABB();
     QPixmap pixabb("/home/debian9/Escritorio/Arboles/ArbolABB.png");

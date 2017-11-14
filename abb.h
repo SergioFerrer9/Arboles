@@ -20,6 +20,9 @@ struct ABB{
     void Mostrar_InOrden(NodoABB *actual);
     void Graficar_ABB();
     void Graficar_ABB(NodoABB *actual);
+    bool Eliminar_ABB(char *nombre);
+    NodoABB *Obtener_Reemplazo(NodoABB *reemp);
+
     NodoABB *raiz;
     ABB();
     FILE *gra;

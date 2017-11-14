@@ -90,6 +90,83 @@ void ABB::Mostrar_InOrden(NodoABB *actual){
     }
 }
 
+///*********ELIMINAR DEL ARBOL ABB******************************
+bool ABB::Eliminar_ABB(char *nombre){
+    nodoABB *auxiliar=raiz;
+    nodoABB *padre=raiz;
+    bool Izquierdo=true;
+    while(auxiliar->Nombre!=nombre){
+        padre=auxiliar;
+        if(strcmp(nombre,auxiliar->Nombre)<0){
+            Izquierdo=true;
+            auxiliar=auxiliar->izq;
+        }else{
+            Izquierdo=false;
+            auxiliar=auxiliar->der;
+        }
+        if(auxiliar==NULL){
+            return false;
+        }
+
+    }//FIN While
+
+    if(auxiliar->izq==NULL && auxiliar->der==NULL){
+        if(auxiliar==raiz){
+            raiz=NULL;
+        }else if(Izquierdo){
+            padre->izq=NULL;
+        }else{
+            padre->der=NULL;
+        }
+    }else if(auxiliar->der==NULL){
+        if(auxiliar==raiz){
+            raiz=auxiliar->izq;
+        }else if(Izquierdo){
+            padre->izq=auxiliar->izq;
+        }else{
+            padre->der=auxiliar->izq;
+        }
+    }else if(auxiliar->izq==NULL){
+        if(auxiliar==raiz){
+            raiz=auxiliar->der;
+        }else if(Izquierdo){
+            padre->izq=auxiliar->der;
+        }else{
+            padre->der=auxiliar->izq;
+        }
+    }else{
+        nodoABB *reemplazo=Obtener_Reemplazo(auxiliar);
+        if(auxiliar==raiz){
+            raiz=reemplazo;
+        }else if(Izquierdo){
+            padre->izq=reemplazo;
+        }else{
+            padre->der=reemplazo;
+        }
+        reemplazo->izq=auxiliar->izq;
+    }
+    return true;
+}
+
+///********METODO PARA OBTENER EL NODO REEMPLAZO****************
+NodoABB *ABB::Obtener_Reemplazo(NodoABB *reemp){
+    nodoABB *reemplazarPadre=reemp;
+    nodoABB *reemplazo=reemp;
+    nodoABB *auxiliar=reemp->der;
+    while(auxiliar!=NULL){
+        reemplazarPadre=reemplazo;
+        reemplazo=auxiliar;
+        auxiliar=auxiliar->izq;
+    }
+    if(reemplazo!=reemp->der){
+        reemplazarPadre->izq=reemplazo->der;
+        reemplazo->der=reemp->der;
+    }
+    cout<<"El Nodo Reemplazo es "<<reemplazo->Nombre<<endl;
+    return reemplazo;
+}
+
+
 ///*********GRAFICAR ARBOL ABB***********************************
 void ABB::Graficar_ABB(){
     gra=fopen("ArbolABB.dot","wt");
