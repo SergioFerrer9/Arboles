@@ -86,49 +86,78 @@
         nuevo->der=NULL;
         nuevo->contador=correlativo2++;
 
-        if(raiz==NULL){
-            raiz=nuevo;
-        }else{
-            raiz=Insertar(nuevo,raiz);
-           }
-
+        raiz=Insertar(nuevo,raiz);
 
     }
 
     NodoAVL *AVL::Insertar(NodoAVL *nuevo, NodoAVL *actual){
-        nodoAVL *Padre =actual;
-        if(strcmp(nuevo->Nombre,actual->Nombre)<0){//nuevo->Nombre<actual->Nombre
-            if(actual->izq==NULL){
-                actual->izq=nuevo;
 
-            }else{
-                actual->izq=Insertar(nuevo,actual->izq);
-                if((Altura(actual->izq)-Altura(actual->der))==2){
-                    if(strcmp(nuevo->Nombre,actual->izq->Nombre)<0){
-                        Padre=Izquierda(actual);
-                    }else{
-                        Padre=IzquierdaDerecha(actual);
-                    }
-                }
-            }
-        }else if (strcmp(nuevo->Nombre,actual->Nombre)>0) {
-            if(actual->der==NULL){
-                actual->der=nuevo;
-            }else{
-                actual->der=Insertar(nuevo,actual->der);
-                if((Altura(actual->der)-Altura(actual->izq))==2){
-                    if(strcmp(nuevo->Nombre,actual->der->Nombre)>0){
-                        Padre=Derecha(actual);
-                    }else{
-                        Padre=DerechaIzquierda(actual);
-                    }
-                }
-            }
-        }else{
-            cout<<"NODO DUPLICADO...."<<endl;
-        }
+       //Si el nodo rcibido fuera nulo entonces el nuevo nodo se puede insertar
+       //en esa posicion y se terminan las llamadas recursivas a este metodo......
+       if(actual == NULL){
+           actual = nuevo;
 
-        actual->altura = Mayor(Altura(actual->izq), Altura(actual->der)) + 1;
+           //Si el nuevo valor fuera menor que el nodo de actual entonces...
+       }else if(strcmp(nuevo->Nombre,actual->Nombre)<0){
+           //Se llama recursivamente al metodo para explorar el subarbol izquierdo
+           //porque el valor a insertar es menor que el del nodo actual.....
+           actual->izq=Insertar(nuevo,actual->izq);
+           if((Altura(actual->der)-Altura(actual->izq))==-2){
+               //Si el factor de equilibrio esta desbalanceado, hay qu hacer
+               //rotacion de nodos, como el fe=-2 hay dos posibilidades de
+               //rotacion dependiendo de:...
+               if(strcmp(nuevo->Nombre,actual->izq->Nombre)<0){
+                   //Si el nuevo valor fuera menor que la izquierda del nodo desbalancado
+                   //se sabe que el nuevo nodo sera insertado a la izquierda de la actual
+                   //izquierda, entonces tenemos una rotacion simple por la izquierda o sea
+                   //una IzquierdaIzquierda....
+                   actual=Izquierda(actual);
+               }else{
+                   //de lo contrario se sabe que el neuvo nodo sera insertado
+                   // a la derecha de la actual izquierda, por lo que se tiene
+                   // un caso de rotacion doble por la izquirda
+                   // o sea una IzquierdaDerecha....
+                   actual=IzquierdaDerecha(actual);
+               }
+
+           }
+
+       }else if(strcmp(nuevo->Nombre,actual->Nombre)>0){
+           //Si el nuevo valor fuera mayor que el nodo de la actual entonces :
+           //se llama recursivamente al metodo para explorar el sub arbol derecho
+           //porque el valor a insertar es mayor que el del nodo actual.
+           actual->der=Insertar(nuevo,actual->der);
+           if((Altura(actual->der) - Altura(actual->izq)==2)){
+               //Si el factor de equilibrio esta desbalanceado, hay que hacer
+               //rotacion de nodos, como el fe=2 hay dos posibilidades de
+               //rotacion dependiendo de:
+               if(strcmp(nuevo->Nombre,actual->der->Nombre)>0){
+                   //Si el nuevo valor fuera maor que la derecha del nodo desbalanceado
+                   //se sabe que el neuvo nodo sera insertado a la derecha del actual derecha
+                   //entonces tenemos una rotacion simple por la derecha o sea DerechaDerecha...
+                   actual=Derecha(actual);
+
+               }else{
+                   //de lo contrario, se sabe que el nuevo nodo sera insertado
+                   //a la izquierda de la actual derecha, por lo que se tiene
+                   //un caso de rotacion doble por la derecha
+                   //o sea una DerechaIzquierda.
+                   actual = DerechaIzquierda(actual);
+               }
+           }
+       }else{
+           //De lo contrario significa que el valor que se quiere insertar ya existe
+           //como no se permite la duplicidad de este dato no se hace nada.
+           cout<<"No se permite los valores duplicados..  "<<endl;
+           cout<<nuevo->Nombre<<endl;
+       }
+           //Finalmente, por cada llamada recursiva debe hacerse una reasignacion
+           //de la altura esta se hara hasta para los nodos que no cambiaron de nivel
+           //en el transcurso porque no hay forma de saber cuales cambiaron de nivel
+           //y cuales no. La altura, sera la altura del hijo que tiene
+           //la altrua mas grande, es decir, la rama mas profunda, mas 1.
+           actual->altura = Mayor(Altura(actual->izq), Altura(actual->der)) + 1;
+           return actual;
 
     }
 

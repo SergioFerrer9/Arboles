@@ -16,6 +16,7 @@
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
@@ -43,6 +44,8 @@ public:
     QGridLayout *gridLayout_2;
     QLabel *label_2;
     QPushButton *pushButton;
+    QLineEdit *lineEdit;
+    QPushButton *pushButton_2;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -99,7 +102,13 @@ public:
         tabWidget->addTab(tab_2, QString());
         pushButton = new QPushButton(centralWidget);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(420, 10, 121, 23));
+        pushButton->setGeometry(QRect(620, 10, 121, 23));
+        lineEdit = new QLineEdit(centralWidget);
+        lineEdit->setObjectName(QStringLiteral("lineEdit"));
+        lineEdit->setGeometry(QRect(10, 10, 113, 23));
+        pushButton_2 = new QPushButton(centralWidget);
+        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        pushButton_2->setGeometry(QRect(150, 10, 80, 23));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -128,6 +137,7 @@ public:
         label_2->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "AVL", nullptr));
         pushButton->setText(QApplication::translate("MainWindow", "Crear Arbol ABB", nullptr));
+        pushButton_2->setText(QApplication::translate("MainWindow", "Agrgar AVL", nullptr));
     } // retranslateUi
 
 };

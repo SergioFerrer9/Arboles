@@ -104,7 +104,7 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>420</x>
+      <x>620</x>
       <y>10</y>
       <width>121</width>
       <height>23</height>
@@ -112,6 +112,29 @@
     </property>
     <property name="text">
      <string>Crear Arbol ABB</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>113</width>
+      <height>23</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>10</y>
+      <width>80</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Agrgar AVL</string>
     </property>
    </widget>
   </widget>

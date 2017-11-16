@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 #include <abb.h>
 #include <avl.h>
-
+AVL *avl = new AVL();
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -41,16 +41,32 @@ void MainWindow::on_pushButton_clicked()
 
 
     AVL *avl = new AVL();
-    avl->Insertar("F",2);
-    avl->Insertar("M",3);
-    avl->Insertar("B",5);
-    avl->Insertar("C",6);
-    avl->Insertar("A",7);
-    avl->Insertar("H",8);
-    avl->Insertar("H",8);
+    avl->Insertar("A",9);
+    avl->Insertar("B",9);
+    avl->Insertar("C",9);
+    avl->Insertar("D",9);
+    avl->Insertar("E",9);
+    avl->Insertar("F",9);
+    avl->Insertar("G",9);
+    avl->Insertar("H",9);
+    avl->Insertar("I",9);
+    avl->Insertar("J",9);
+    avl->Insertar("K",9);
+    avl->Insertar("L",9);
+    avl->Insertar("M",9);
     avl->Insertar("N",9);
-    avl->Insertar("Z",10);
-    avl->Insertar("D",11);
+    avl->Insertar("O",9);
+    avl->Insertar("P",9);
+    avl->Insertar("Q",9);
+    avl->Insertar("R",9);
+    avl->Insertar("S",9);
+    avl->Insertar("T",9);
+    avl->Insertar("U",9);
+    avl->Insertar("V",9);
+    avl->Insertar("W",9);
+    avl->Insertar("X",9);
+    avl->Insertar("Y",9);
+    avl->Insertar("Z",9);
 
 
     avl->Mostrar_InOrden();
@@ -62,3 +78,31 @@ void MainWindow::on_pushButton_clicked()
 
 
 }
+
+void MainWindow::on_pushButton_2_clicked()
+{
+
+    char *texto=strdup(ui->lineEdit->text().toUtf8().constData());
+    avl->Insertar(texto,9);
+    avl->Graficar_AVL();
+    QPixmap pixavl("/home/debian9/Escritorio/Arboles/ArbolAVL.png");
+    ui->label_2->setPixmap(pixavl);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
