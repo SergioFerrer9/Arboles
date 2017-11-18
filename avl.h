@@ -23,6 +23,8 @@ struct AVL{
     void Graficar_AVL();
     void Graficar_AVL(NodoAVL *actual);
     int Factor_Equilibrio(NodoAVL *actual);
+    bool Eliminar_AVL(char *nombre);
+    NodoAVL *Obtener_Reemplazo(NodoAVL *reemp);
     NodoAVL *Izquierda(NodoAVL *actual);
     NodoAVL *Derecha(NodoAVL *actual);
     NodoAVL *IzquierdaDerecha(NodoAVL *actual);

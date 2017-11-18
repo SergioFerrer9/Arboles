@@ -95,7 +95,7 @@ bool ABB::Eliminar_ABB(char *nombre){
     nodoABB *auxiliar=raiz;
     nodoABB *padre=raiz;
     bool Izquierdo=true;
-    while(auxiliar->Nombre!=nombre){
+    while(strcmp(auxiliar->Nombre,nombre)!=0){
         padre=auxiliar;
         if(strcmp(nombre,auxiliar->Nombre)<0){
             Izquierdo=true;
@@ -145,6 +145,8 @@ bool ABB::Eliminar_ABB(char *nombre){
         }
         reemplazo->izq=auxiliar->izq;
     }
+
+
     return true;
 }
 

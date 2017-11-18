@@ -46,6 +46,7 @@ public:
     QPushButton *pushButton;
     QLineEdit *lineEdit;
     QPushButton *pushButton_2;
+    QPushButton *pushButton_3;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -109,6 +110,9 @@ public:
         pushButton_2 = new QPushButton(centralWidget);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
         pushButton_2->setGeometry(QRect(150, 10, 80, 23));
+        pushButton_3 = new QPushButton(centralWidget);
+        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
+        pushButton_3->setGeometry(QRect(270, 10, 80, 23));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -138,6 +142,7 @@ public:
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "AVL", nullptr));
         pushButton->setText(QApplication::translate("MainWindow", "Crear Arbol ABB", nullptr));
         pushButton_2->setText(QApplication::translate("MainWindow", "Agrgar AVL", nullptr));
+        pushButton_3->setText(QApplication::translate("MainWindow", "Eliminar AVL", nullptr));
     } // retranslateUi
 
 };

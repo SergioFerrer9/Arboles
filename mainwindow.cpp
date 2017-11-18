@@ -92,6 +92,29 @@ void MainWindow::on_pushButton_2_clicked()
 
 
 
+void MainWindow::on_pushButton_3_clicked()
+{
+    char *texto=strdup(ui->lineEdit->text().toUtf8().constData());
+    avl->Eliminar_AVL(texto);
+    avl->Mostrar_InOrden();
+    avl->Graficar_AVL();
+    QPixmap pixavl("/home/debian9/Escritorio/Arboles/ArbolAVL.png");
+    ui->label_2->setPixmap(pixavl);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

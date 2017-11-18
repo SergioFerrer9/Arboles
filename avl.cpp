@@ -178,6 +178,86 @@
         }
     }
 
+    ///*********ELIMINAR DEL ARBOL AVL******************************
+    bool AVL::Eliminar_AVL(char *nombre){
+
+        nodoAVL *auxiliar=raiz;
+        nodoAVL *padre=raiz;
+        bool Izquierdo=true;
+        while(strcmp(auxiliar->Nombre,nombre)!=0){
+            padre=auxiliar;
+            if(strcmp(nombre,auxiliar->Nombre)<0){
+                Izquierdo=true;
+                auxiliar=auxiliar->izq;
+            }else{
+                Izquierdo=false;
+                auxiliar=auxiliar->der;
+            }
+            if(auxiliar==NULL){
+                return false;
+            }
+
+        }//FIN While
+
+        cout<<"ELIMINAR..."<<nombre<<endl;
+        if(auxiliar->izq==NULL && auxiliar->der==NULL){
+            if(auxiliar==raiz){
+                raiz=NULL;
+            }else if(Izquierdo){
+                padre->izq=NULL;
+            }else{
+                padre->der=NULL;
+            }
+        }else if(auxiliar->der==NULL){
+            if(auxiliar==raiz){
+                raiz=auxiliar->izq;
+            }else if(Izquierdo){
+                padre->izq=auxiliar->izq;
+            }else{
+                padre->der=auxiliar->izq;
+            }
+        }else if(auxiliar->izq==NULL){
+            if(auxiliar==raiz){
+                raiz=auxiliar->der;
+            }else if(Izquierdo){
+                padre->izq=auxiliar->der;
+            }else{
+                padre->der=auxiliar->izq;
+            }
+        }else{
+            nodoAVL *reemplazo=Obtener_Reemplazo(auxiliar);
+            if(auxiliar==raiz){
+                raiz=reemplazo;
+            }else if(Izquierdo){
+                padre->izq=reemplazo;
+            }else{
+                padre->der=reemplazo;
+            }
+            reemplazo->izq=auxiliar->izq;
+        }
+
+        cout<<"TRUE"<<endl;
+        return true;
+    }
+
+    ///********METODO PARA OBTENER EL NODO REEMPLAZO****************
+    NodoAVL *AVL::Obtener_Reemplazo(NodoAVL *reemp){
+        nodoAVL *reemplazarPadre=reemp;
+        nodoAVL *reemplazo=reemp;
+        nodoAVL *auxiliar=reemp->der;
+        while(auxiliar!=NULL){
+            reemplazarPadre=reemplazo;
+            reemplazo=auxiliar;
+            auxiliar=auxiliar->izq;
+        }
+        if(reemplazo!=reemp->der){
+            reemplazarPadre->izq=reemplazo->der;
+            reemplazo->der=reemp->der;
+        }
+        cout<<"El Nodo Reemplazo es "<<reemplazo->Nombre<<endl;
+        return reemplazo;
+    }
+
     ///************GRAFICAR ARBOL AVL*****************************
     void AVL::Graficar_AVL(){
         gra=fopen("ArbolAVL.dot","wt");
